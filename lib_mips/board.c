@@ -541,14 +541,15 @@ static int init_func_ram (void)
 
 static int display_banner(void)
 {
-
+// BT20190205 removed banner
+/*
 
     printf ("\n\n   ____       _             ____\n"
                     "  / __ \\___  (_)__  ___    / __ \\__ _  ___ ___ ____ _\n"
                     " / /_/ / _ \\/ / _ \\/ _ \\  / /_/ /  ' \\/ -_) _ `/ _ `/\n"
                     " \\____/_//_/_/\\___/_//_/  \\____/_/_/_/\\__/\\_, /\\_,_/\n"
                     " W H A T  W I L L  Y O U  I N V E N T ? /___/\"\n\n");
-
+*/
 	return (0);
 }
 
@@ -2016,6 +2017,20 @@ void board_init_r (gd_t *id, ulong dest_addr)
     printf("**************************************\n");
     printf("\n");
     printf("\n");
+
+/* BT20190402 HACK configure GPIO15 as digital pad */
+   RALINK_REG(RT2880_AGPIOCFG_REG) |= 0x1e0000;
+
+/* BT20190408 HACK configure GPIO19 and GPIO17 as output */
+   RALINK_REG(RT2880_REG_PIODIR) |= 0xA0000;
+
+   /* set GPIO19, reset GPIO17 */
+   RALINK_REG(RT2880_REG_PIODATA) |= 0x80000;
+   RALINK_REG(RT2880_REG_PIODATA) &= ~0x20000;
+
+#define GPIO1_MODE 0x10000060
+   RALINK_REG(GPIO1_MODE) |= 0x40000000;
+
 
 // #define PROGRESS_SCALE 0
 
