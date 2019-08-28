@@ -20,7 +20,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston,
  * MA 02111-1307 USA
  *
- * Modified
+ * Modified for Ultimaker E2
  */
 
 #include <common.h>
@@ -2027,20 +2027,21 @@ void board_init_r (gd_t *id, ulong dest_addr)
     if (detect_rst())
     {
 
-        printf("You have %d seconds left to select a menu option...\n\n", timer1 * 8);
+	/* changed this from original code to reflect real value */
+        printf("You have %d seconds left to select a menu option...\n\n", timer1);
 
         OperationSelect();
 
         //default
-        BootType = 'b';
+        BootType = '2';
 
         // zh@onion.io
         // wait for user input
         while (timer1 > 0)
         {
             --timer1;
-            /* delay 100 * 10ms */
-            for (i = 0; i < 100; ++i)
+            /* delay 16 * 60ms = ~1s */ 
+            for (i = 0; i < 16; ++i)
             {
 
                 led_on();
