@@ -2063,10 +2063,14 @@ void board_init_r (gd_t *id, ulong dest_addr)
 
                 if ((my_tmp = tstc()) != 0)
                 {    /* we got a key press	*/
-                    timer1 = 0;    /* no more delay	*/
-                    BootType = getc();
-
-                    printf("\n\rOption [%c] selected.\n", BootType);
+//                    timer1 = 0;    /* no more delay	*/
+                    int kar = getc();
+                    if( kar == '\r' || (kar >= '0' && kar <= '2') ) {
+                        BootType = kar;
+                        timer1 = 0;
+                    }
+ 
+                    printf("\n\rOption [%c][%d] selected.\n", BootType,BootType);
                     break;
                 }
 
