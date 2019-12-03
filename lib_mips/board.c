@@ -542,14 +542,14 @@ static int init_func_ram (void)
 static int display_banner(void)
 {
 // BT20190205 removed banner
-/*
+
 
     printf ("\n\n   ____       _             ____\n"
                     "  / __ \\___  (_)__  ___    / __ \\__ _  ___ ___ ____ _\n"
                     " / /_/ / _ \\/ / _ \\/ _ \\  / /_/ /  ' \\/ -_) _ `/ _ `/\n"
                     " \\____/_//_/_/\\___/_//_/  \\____/_/_/_/\\__/\\_, /\\_,_/\n"
                     " W H A T  W I L L  Y O U  I N V E N T ? /___/\"\n\n");
-*/
+
 	return (0);
 }
 
